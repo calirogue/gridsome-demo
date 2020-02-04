@@ -3,6 +3,7 @@ title: First Post
 excerpt: "ypes definition. vfile-message provides its own type definitioypes definition. vfile-message"
 date: 2019-02-4
 tags: ['motor', 'shirts', 'motorcycle', 'combat veteran']
+cover_image: './images/tailormade.jpg'
 ---
 
 ## First Post

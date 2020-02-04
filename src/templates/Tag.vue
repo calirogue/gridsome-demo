@@ -1,7 +1,7 @@
 <template>
   <Layout>
-    <h1>Blog</h1>
-    <article v-for="edge in $static.allPost.edges" :key="edge.node.id" style="margin-bottom: 5em">
+    <h1># {{ $page.tag.title }}</h1>
+    <article v-for="edge in $page.tag.belongsTo.edges" :key="edge.node.id" style="margin-bottom: 5em">
       <g-image :src="edge.node.cover_image" style="width: 100%" />
       <h2>{{ edge.node.title }}</h2>
       <p>{{ edge.node.excerpt }}</p>
@@ -15,27 +15,25 @@
   </Layout>
 </template>
 
-<static-query>
-{
-  allPost {
-    edges {
-      node {
-        date
-        title
-        excerpt
-        cover_image (width: 1000, height: 300, fit: contain, quality: 90, blur: 20)
-        timeToRead
-        tags {
-          id
-          path
+<page-query>
+query($id: String! ) {
+	tag(id: $id) {
+    title
+    belongsTo {
+      edges {
+        node {
+          ... on Post {
+            id
+            title
+            cover_image
+            excerpt
+          }
         }
-        id
-        path
       }
     }
   }
 }
-</static-query>
+</page-query>
 
 <script>
 export default {
