@@ -8,6 +8,7 @@
       <div>
         <span style="padding-right: .45em" v-for="tag in edge.node.tags" :key="tag">#{{ tag }}</span>
       </div>
+      <g-link :to="edge.node.path">Read Post</g-link>
       <!-- <div v-html="edge.node.content"></div> -->
     </article>
   </Layout>
@@ -24,6 +25,7 @@
         timeToRead
         tags
         id
+        path
       }
     }
   }
