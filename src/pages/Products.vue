@@ -1,5 +1,7 @@
 <template>
-  <h1>Products</h1>
+  <Layout>
+    <h1>Products</h1>
+  </Layout>
 </template>
 
 <script>
