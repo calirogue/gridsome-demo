@@ -3,7 +3,13 @@
     <h1>Products</h1>
     <div style="text-align: center;" v-for="edge in $page.allContentfulProduct.edges" :key="edge.node.id">
       <h2 style="margin-bottom: 0.25em;">{{ edge.node.name }}</h2>
-      <span>${{ edge.node.price }}</span>
+      <button class="snipcart-add-item cart-button" 
+        :data-item-id="edge.node.id" 
+        :data-item-name="edge.node.name" 
+        :data-item-image="edge.node.image.file.url" 
+        :data-item-price="edge.node.price"
+        :data-item-url="edge.node.path">
+        Buy for ${{ edge.node.price }}</button>
       <g-image :src="edge.node.image.file.url" style="width: 100%; height: 300px; object-fit: contain;" :alt="edge.node.image.title" />
       <p>{{ edge.node.description }}</p>
     </div>
@@ -13,7 +19,6 @@
 
 <page-query>
 query ($page: Int) {
-
   allContentfulProduct (perPage: 2, page: $page) @paginate {
     pageInfo {
       totalPages
@@ -63,5 +68,16 @@ export default {
   color: rgb(104, 117, 161);
   text-decoration: none;
   font-weight: 500;
+}
+
+.cart-button {
+  background-color: forestgreen;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 8px 16;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-size: 1rem;
 }
 </style>
